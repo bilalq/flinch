@@ -1,0 +1,39 @@
+{
+  "name": "flinch",
+  "version": "0.0.0",
+  "description": "Task dependency helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bilalq/flinch.git"
+  },
+  "keywords": [
+    "task",
+    "schedule",
+    "flinch",
+    "executable"
+  ],
+  "author": "Bilal Quadri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bilalq/flinch/issues"
+  },
+  "homepage": "https://github.com/bilalq/flinch",
+  "directories": {
+    "man": "./man",
+    "lib": "./lib",
+    "bin": "./bin"
+  },
+  "dependencies": {
+    "commander": "*",
+    "request": "*"
+
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  }
+}

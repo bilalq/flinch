@@ -1,0 +1,6 @@
+--ui bdd
+--reporter spec
+--growl
+--debug
+--check-leaks
+--watch
