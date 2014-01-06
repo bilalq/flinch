@@ -3,4 +3,5 @@
 --growl
 --debug
 --check-leaks
---watch
+--require test/support/common
+--recursive
