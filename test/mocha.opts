@@ -6,3 +6,4 @@
 --require test/support/common
 --recursive
 --watch
+--async-only

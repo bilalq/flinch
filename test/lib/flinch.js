@@ -2,8 +2,9 @@ var flinchCommander = require('../../lib/flinch');
 
 describe('flinch commander', function() {
   var flinch;
-  beforeEach(function() {
+  beforeEach(function(done) {
     flinch = flinchCommander();
+    done();
   });
 
   it('should have an option to specify the port', function(done) {
@@ -17,12 +18,13 @@ describe('flinch commander', function() {
 
   describe('commands', function() {
     var hasCommand;
-    before(function() {
+    before(function(done) {
       hasCommand = function(cmdName) {
         return !!_.find(flinch.commands, function(cmd) {
           return cmd._name === cmdName;
         });
       };
+      done();
     });
 
     it('should have "server"', function(done) {
