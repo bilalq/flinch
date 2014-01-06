@@ -10,10 +10,9 @@ chai.use(sinonChai);
 
 
 // Easy muting/unmuting of console.log
-var logger = console.log;
 global.mute = function() {
-  console.log = sinon.stub();
+  sinon.stub(console, 'log');
 };
 global.unmute = function() {
-  console.log = logger;
+  console.log.restore();
 };
