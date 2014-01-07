@@ -8,11 +8,21 @@ global.sinonChai = require('sinon-chai');
 global._ = require('underscore');
 chai.use(sinonChai);
 
-
 // Easy muting/unmuting of console.log
 global.mute = function() {
   sinon.stub(console, 'log');
 };
 global.unmute = function() {
-  console.log.restore();
+  console.log.restore && console.log.restore();
+};
+
+// Helper function to run shell commands
+global.run_cmd = function(cmd, args, callback) {
+  var spawn = require('child_process').spawn
+    , child = spawn(cmd, args)
+    , res = '';
+
+  child.stdout.on('data', function(buffer) { res += buffer.toString(); });
+  child.stdout.on('end', function() { callback(resp); });
+  return child;
 };

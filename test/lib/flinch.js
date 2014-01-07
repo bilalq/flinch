@@ -1,9 +1,9 @@
 var flinchCommander = require('../../lib/flinch');
 
-describe('flinch commander', function() {
+describe('Flinch commander', function() {
   var flinch;
-  beforeEach(function(done) {
-    flinch = flinchCommander();
+  before(function(done) {
+    flinch = flinch || flinchCommander();
     done();
   });
 
