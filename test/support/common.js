@@ -9,11 +9,18 @@ global._ = require('underscore');
 chai.use(sinonChai);
 
 // Easy muting/unmuting of console.log
+var muted = false;
 global.mute = function() {
-  sinon.stub(console, 'log');
+  if (!muted) {
+    sinon.stub(console, 'log');
+    muted = true;
+  }
 };
 global.unmute = function() {
-  console.log.restore && console.log.restore();
+  if (console.log.restore) {
+    muted = false;
+    console.log.restore();
+  }
 };
 
 // Helper function to run shell commands
