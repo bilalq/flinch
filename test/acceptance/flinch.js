@@ -3,7 +3,7 @@ var onCmd = require('../../lib/on')
   , ggCmd = require('../../lib/gg')
   , serverCmd = require('../../lib/server');
 
-describe('Feature spec', function() {
+describe('Acceptance spec', function() {
   var port
     , event
     , context

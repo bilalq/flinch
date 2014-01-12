@@ -1,7 +1,7 @@
 {
   "name": "flinch",
   "version": "0.0.1",
-  "description": "Task dependency helper",
+  "description": "Event based task blocking and execution.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -13,6 +13,7 @@
   "keywords": [
     "task",
     "schedule",
+    "event",
     "flinch",
     "executable"
   ],
