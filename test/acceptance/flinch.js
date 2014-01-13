@@ -6,11 +6,13 @@ var onCmd = require('../../lib/on')
 describe('Acceptance spec', function() {
   var port
     , event
+    , ttlOption
     , context
     , flinchServer;
 
   beforeEach(function(done) {
     port = 5030;
+    ttlOption = { ttl: 15000 };
     event = 'event';
     context = { port: port };
     mute();
@@ -33,14 +35,17 @@ describe('Acceptance spec', function() {
   describe('flinch at', function() {
     it('should make a POST request to the server and get a status code of 0', function(done) {
       mute();
-      atCmd.call(context, event, {callback: function(err, res, body) {
-        res.statusCode.should.equal(200);
-        body.flinched.should.be.true;
-        body.status_code.should.equal(0);
-        body.event.should.equal(event);
-        unmute();
-        done();
-      }});
+      atCmd.call(context, event, {
+        ttl: 15000
+      , callback: function(err, res, body) {
+          res.statusCode.should.equal(200);
+          body.flinched.should.be.true;
+          body.status_code.should.equal(0);
+          body.event.should.equal(event);
+          unmute();
+          done();
+        }
+      });
     });
   });
 
@@ -67,19 +72,19 @@ describe('Acceptance spec', function() {
           , atEvent;
 
         mute();
-        onEvent = onCmd.call(context, event);
+        onEvent = onCmd.call(context, event, ttlOption);
         onEvent.blocking.should.be.true;
         setTimeout(function() {
           var processMock = sinon.mock(process);
           processMock.expects('exit').atLeast(1).withArgs(0);
           onEvent.blocking.should.be.true;
-          atEvent = atCmd.call(context, event);
+          atEvent = atCmd.call(context, event, ttlOption);
           setTimeout(function() {
             onEvent.blocking.should.be.false;
             processMock.verify();
             unmute();
             done();
-          }, 1500);
+          }, 1400);
         }, 50);
       });
     });
@@ -98,13 +103,13 @@ describe('Acceptance spec', function() {
           var processMock = sinon.mock(process);
           processMock.expects('exit').atLeast(1).withArgs(1);
           onEvent.blocking.should.be.true;
-          ggEvent = ggCmd.call(context, event);
+          ggEvent = ggCmd.call(context, event, ttlOption);
           setTimeout(function() {
             onEvent.blocking.should.be.false;
             processMock.verify();
             unmute();
             done();
-          }, 1500);
+          }, 1400);
         }, 50);
       });
     });
