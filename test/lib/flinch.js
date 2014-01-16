@@ -7,45 +7,58 @@ describe('Flinch commander', function() {
     done();
   });
 
-  it('should have an option to specify the port', function(done) {
+  it('has an option to specify the port', function(done) {
     expect(_.find(flinch.options, function(opt) {
       return opt.short === '-p' && opt.long === '--port' &&
         opt.optional && !opt.required;
-    })).to.not.be.undefined;
+    })).to.exist;
     done();
   });
 
-
-  describe('commands', function() {
-    var hasCommand;
+  describe('command list', function() {
+    var findCommand, findOption;
     before(function(done) {
-      hasCommand = function(cmdName) {
-        return !!_.find(flinch.commands, function(cmd) {
+      findCommand = function(cmdName) {
+        return _.find(flinch.commands, function(cmd) {
           return cmd._name === cmdName;
+        });
+      };
+      findOption = function(optShortName, optLongName) {
+        return _.find(this.options, function(opt) {
+          return opt.short === optShortName && opt.long === optLongName;
         });
       };
       done();
     });
 
-    it('should have "server"', function(done) {
-      hasCommand('server').should.be.true;
+    it('includes "server"', function(done) {
+      findCommand('server').should.exist;
       done();
     });
 
-    it('should have "s"', function(done) {
-      hasCommand('s').should.be.true;
+    it('includes "s"', function(done) {
+      findCommand('s').should.exist;
       done();
     });
 
-    it('should have "at"', function(done) {
-      hasCommand('at').should.be.true;
+    it('includes "at"', function(done) {
+      var atCmd = findCommand('at');
+      atCmd.should.exist;
+      findOption.call(atCmd, '-t', '--ttl').should.exist;
       done();
     });
 
-    it('should have "on"', function(done) {
-      hasCommand('on').should.be.true;
+    it('includes "gg"', function(done) {
+      var ggCmd = findCommand('gg');
+      ggCmd.should.exist;
+      findOption.call(ggCmd, '-t', '--ttl').should.exist;
       done();
     });
 
+    it('includes "on"', function(done) {
+      findCommand('on').should.exist;
+      done();
+    });
   });
+
 });

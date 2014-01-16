@@ -2,7 +2,7 @@ var request = require('request')
   , onCmd = require('../../lib/on');
 
 describe('On', function() {
-  it('should block until flinched', function(done) {
+  it('blocks until flinched', function(done) {
     var processMock = sinon.mock(process)
       , flinchState = { flinched: false }
       , blockState;
@@ -16,7 +16,7 @@ describe('On', function() {
     blockState.blocking.should.be.true;
 
     flinchState.flinched = true;
-    flinchState.status_code = 0;
+    flinchState.statusCode = 0;
     setTimeout(function() {
       blockState.blocking.should.be.false;
       processMock.verify();

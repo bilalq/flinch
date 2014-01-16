@@ -26,21 +26,21 @@ describe('Acceptance spec', function() {
   });
 
   describe('flinch server', function() {
-    it('should start up a server', function(done) {
+    it('starts up a server', function(done) {
       flinchServer.address().port.should.equal(port);
       done();
     });
   });
 
   describe('flinch at', function() {
-    it('should make a POST request to the server and get a status code of 0', function(done) {
+    it('makes a POST request to the server and gets a status code of 0', function(done) {
       mute();
       atCmd.call(context, event, {
         ttl: 15000
       , callback: function(err, res, body) {
           res.statusCode.should.equal(200);
           body.flinched.should.be.true;
-          body.status_code.should.equal(0);
+          body.statusCode.should.equal(0);
           body.event.should.equal(event);
           unmute();
           done();
@@ -50,12 +50,12 @@ describe('Acceptance spec', function() {
   });
 
   describe('flinch gg', function() {
-    it('should make a POST request to the server and get a status code of 1', function(done) {
+    it('makes a POST request to the server and gets a status code of 1', function(done) {
       mute();
       ggCmd.call(context, event, {callback: function(err, res, body) {
         res.statusCode.should.equal(200);
         body.flinched.should.be.true;
-        body.status_code.should.equal(1);
+        body.statusCode.should.equal(1);
         body.event.should.equal(event);
         unmute();
         done();
@@ -66,10 +66,9 @@ describe('Acceptance spec', function() {
   describe('flinch on', function() {
 
     describe('when flinch at is invoked', function() {
-      it('should block until flinched and exit with status code 0', function(done) {
-        this.timeout(5000);
-        var onEvent
-          , atEvent;
+      it('blocks until flinched and exits with status code 0', function(done) {
+        var onEvent, atEvent;
+        this.timeout(2000);
 
         mute();
         onEvent = onCmd.call(context, event, ttlOption);
@@ -84,23 +83,41 @@ describe('Acceptance spec', function() {
             processMock.verify();
             unmute();
             done();
-          }, 1400);
+          }, 1300);
+        }, 50);
+      });
+
+      it('should stop blocking if flinched at earlier within a TTL', function(done) {
+        var onEvent, atEvent, processMock;
+        this.timeout(2000);
+
+        mute();
+
+        atEvent = atCmd.call(context, event, ttlOption);
+        setTimeout(function() {
+          processMock = sinon.mock(process);
+          processMock.expects('exit').atLeast(1).withArgs(0);
+          onEvent = onCmd.call(context, event, ttlOption);
+          setTimeout(function() {
+            onEvent.blocking.should.not.be.true;
+            processMock.verify();
+            unmute();
+            done();
+          }, 1300);
         }, 50);
       });
     });
 
     describe('when flinch gg is invoked', function() {
-      it('should block until flinched and exit with status code 1', function(done) {
-        this.timeout(5000);
-        var event = 'gg'
-          , onEvent
-          , ggEvent;
+      it('blocks until flinched and exits with status code 1', function(done) {
+        this.timeout(2000);
+        var event = 'gg' , onEvent , ggEvent , processMock;
 
         mute();
         onEvent = onCmd.call(context, event);
         onEvent.blocking.should.be.true;
         setTimeout(function() {
-          var processMock = sinon.mock(process);
+          processMock = sinon.mock(process);
           processMock.expects('exit').atLeast(1).withArgs(1);
           onEvent.blocking.should.be.true;
           ggEvent = ggCmd.call(context, event, ttlOption);
@@ -109,7 +126,7 @@ describe('Acceptance spec', function() {
             processMock.verify();
             unmute();
             done();
-          }, 1400);
+          }, 1300);
         }, 50);
       });
     });
