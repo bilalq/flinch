@@ -12,7 +12,7 @@ describe('Acceptance spec', function() {
 
   beforeEach(function(done) {
     port = 5030;
-    ttlOption = { ttl: 15000 };
+    ttlOption = { ttl: 10 };
     event = 'event';
     context = { port: port };
     mute();
@@ -36,7 +36,7 @@ describe('Acceptance spec', function() {
     it('makes a POST request to the server and gets a status code of 0', function(done) {
       mute();
       atCmd.call(context, event, {
-        ttl: 15000
+        ttl: 10
       , callback: function(err, res, body) {
           res.statusCode.should.equal(200);
           body.flinched.should.be.true;

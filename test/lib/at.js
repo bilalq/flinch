@@ -13,12 +13,12 @@ describe('At', function() {
       , json: {
           event: event
         , statusCode: 0
-        , ttl: 15000
+        , ttl: 10 * 60 * 1000
         }
       }
     );
 
-    atCmd.call({ port: port }, event, { ttl: 15000 });
+    atCmd.call({ port: port }, event, { ttl: 10 });
     requestMock.verify();
     done();
   });

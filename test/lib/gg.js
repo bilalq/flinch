@@ -13,12 +13,12 @@ describe('GG', function() {
       , json: {
           event: event
         , statusCode: 1
-        , ttl: 15000
+        , ttl: 10 * 60 * 1000
         }
       }
     );
 
-    ggCmd.call({ port: port }, event, { ttl: 15000 });
+    ggCmd.call({ port: port }, event, { ttl: 10 });
     requestMock.verify();
     done();
   });
