@@ -1,2 +1,4 @@
+#!/usr/bin/env node
+
 var flinch = require('../lib/flinch');
 flinch().parse(process.argv);
