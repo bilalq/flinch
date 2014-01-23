@@ -1,14 +1,11 @@
 var onCmd = require('../../lib/on')
   , atCmd = require('../../lib/at')
   , ggCmd = require('../../lib/gg')
+  , flushCmd = require('../../lib/flush')
   , serverCmd = require('../../lib/server');
 
 describe('Acceptance spec', function() {
-  var port
-    , event
-    , ttlOption
-    , context
-    , flinchServer;
+  var port, event, ttlOption, context, flinchServer;
 
   beforeEach(function(done) {
     port = 5030;
@@ -29,6 +26,34 @@ describe('Acceptance spec', function() {
     it('starts up a server', function(done) {
       flinchServer.address().port.should.equal(port);
       done();
+    });
+  });
+
+  describe('flinch flush', function() {
+    it('should clear event list record', function(done) {
+      this.timeout(3000);
+      var onEvent, atEvent, processMock;
+      mute();
+
+      processMock = sinon.mock(process);
+      processMock.expects('exit').atLeast(1).withArgs(0);
+
+      atEvent = atCmd.call(context, event, ttlOption);
+      setTimeout(function() {
+        flushCmd.call(context, { callback: function() {
+          onEvent = onCmd.call(context, event, ttlOption);
+          setTimeout(function() {
+            onEvent.blocking.should.be.true;
+            atCmd.call(context, event, ttlOption);
+            setTimeout(function() {
+              onEvent.blocking.should.be.false;
+              processMock.verify();
+              unmute();
+              done();
+            }, 1100);
+          }, 1100);
+        }});
+      }, 150);
     });
   });
 
@@ -111,7 +136,7 @@ describe('Acceptance spec', function() {
     describe('when flinch gg is invoked', function() {
       it('blocks until flinched and exits with status code 1', function(done) {
         this.timeout(2000);
-        var event = 'gg' , onEvent , ggEvent , processMock;
+        var event = 'gg', onEvent, ggEvent, processMock;
 
         mute();
         onEvent = onCmd.call(context, event);
