@@ -1,7 +1,7 @@
 {
   "name": "flinch",
   "version": "0.0.1",
-  "description": "Event based task blocking and execution.",
+  "description": "Multitask with cat-like reflexes",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -15,7 +15,9 @@
     "schedule",
     "event",
     "flinch",
-    "executable"
+    "executable",
+    "blocking",
+    "signalling"
   ],
   "author": "Bilal Quadri",
   "license": "MIT",
