@@ -30,15 +30,15 @@
     "bin": "./bin"
   },
   "dependencies": {
-    "commander": "*",
-    "request": "*",
-    "cli-color": "*",
-    "underscore": "*"
+    "commander": "2.1.x",
+    "request": "2.31.x",
+    "cli-color": "0.2.x",
+    "underscore": "1.5.x"
   },
   "devDependencies": {
-    "mocha": "*",
-    "sinon": "*",
-    "chai": "*",
-    "sinon-chai": "*"
+    "mocha": "1.17.x",
+    "sinon": "1.7.x",
+    "chai": "1.8.x",
+    "sinon-chai": "2.4.x"
   }
 }
