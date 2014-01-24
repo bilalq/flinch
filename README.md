@@ -3,7 +3,7 @@ flinch
 
 Multitask with cat-like reflexes
 
-[![Build Status][1]][2] [![Coverage Status][3]][4] [![Dependency Status][5]][6]
+[![Build Status][1]][2] [![Coverage Status][3]][4] [![Dependency Status][5]][6] [![NPM version][7]][8]
 
 Installation
 ------------
@@ -85,7 +85,7 @@ status. That's all there is to it.
 
 License
 -------
-[MIT][7]
+[MIT][9]
 
   [1]: https://travis-ci.org/bilalq/flinch.png?branch=master
   [2]: https://travis-ci.org/bilalq/flinch
@@ -93,4 +93,6 @@ License
   [4]: https://coveralls.io/r/bilalq/flinch?branch=master
   [5]: https://gemnasium.com/bilalq/flinch.png
   [6]: https://gemnasium.com/bilalq/flinch
-  [7]: https://github.com/bilalq/flinch/blob/master/LICENSE
+  [7]: https://badge.fury.io/js/flinch.png
+  [8]: https://npmjs.org/package/flinch
+  [9]: https://github.com/bilalq/flinch/blob/master/LICENSE
