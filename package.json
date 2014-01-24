@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "commander": "2.1.x",
-    "request": "2.31.x",
+    "request": "2.33.x",
     "cli-color": "0.2.x",
     "underscore": "1.5.x"
   },
