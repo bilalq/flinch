@@ -31,15 +31,14 @@ describe('Acceptance spec', function() {
 
   describe('flinch flush', function() {
     it('should clear event list record', function(done) {
-      this.timeout(3000);
+      this.timeout(4000);
       var onEvent, atEvent, processMock;
       mute();
 
       processMock = sinon.mock(process);
       processMock.expects('exit').atLeast(1).withArgs(0);
 
-      atEvent = atCmd.call(context, event, ttlOption);
-      setTimeout(function() {
+      atEvent = atCmd.call(context, event, { ttl: 10, callback: function() {
         flushCmd.call(context, { callback: function() {
           onEvent = onCmd.call(context, event, ttlOption);
           setTimeout(function() {
@@ -50,10 +49,10 @@ describe('Acceptance spec', function() {
               processMock.verify();
               unmute();
               done();
-            }, 1100);
-          }, 1100);
+            }, 1300);
+          }, 1300);
         }});
-      }, 150);
+      }});
     });
   });
 
