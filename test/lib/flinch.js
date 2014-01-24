@@ -41,6 +41,16 @@ describe('Flinch commander', function() {
       done();
     });
 
+    it('includes "flush"', function(done) {
+      findCommand('flush').should.exist;
+      done();
+    });
+
+    it('includes "f"', function(done) {
+      findCommand('f').should.exist;
+      done();
+    });
+
     it('includes "at"', function(done) {
       var atCmd = findCommand('at');
       atCmd.should.exist;

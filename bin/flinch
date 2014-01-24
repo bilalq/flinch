@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+// vim: ft=javascript
 
-var flinch = require('../lib/flinch');
-flinch().parse(process.argv);
+(function() {
+  // Print help message if no commands or options are passed
+  if (process.argv.length < 3) { process.argv.push('-h'); }
+
+  var flinch = require('../lib/flinch');
+  flinch().parse(process.argv);
+})();
