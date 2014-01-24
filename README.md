@@ -1,6 +1,9 @@
 flinch
 ======
+
 Multitask with cat-like reflexes
+
+[![Build Status](https://travis-ci.org/bilalq/flinch.png?branch=master)](https://travis-ci.org/bilalq/flinch)
 
 Installation
 ------------

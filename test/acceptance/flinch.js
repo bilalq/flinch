@@ -135,7 +135,7 @@ describe('Acceptance spec', function() {
 
     describe('when flinch gg is invoked', function() {
       it('blocks until flinched and exits with status code 1', function(done) {
-        this.timeout(2000);
+        this.timeout(3000);
         var event = 'gg', onEvent, ggEvent, processMock;
 
         mute();
@@ -156,6 +156,52 @@ describe('Acceptance spec', function() {
       });
     });
 
+  });
+
+  describe('when multiple announcements are made on the same event', function() {
+    var onEvent, processMock;
+
+    beforeEach(function(done) {
+      processMock = sinon.mock(process);
+      done();
+    });
+
+    afterEach(function(done) {
+      processMock.verify();
+      done();
+    });
+
+    it('keeps only the latest announcement when at is called last', function(done) {
+      processMock.expects('exit').withArgs(0).atLeast(1);
+      processMock.expects('exit').withArgs(1).never();
+
+      mute();
+      ggCmd.call(context, event, { ttl: 10, callback: function() {
+        atCmd.call(context, event, { ttl: 10, callback: function() {
+          onEvent = onCmd.call(context, event);
+          setTimeout(function() {
+            unmute();
+            done();
+          }, 1100);
+        }});
+      }});
+    });
+
+    it('keeps only the latest announcement when gg is called last', function(done) {
+      processMock.expects('exit').withArgs(1).atLeast(1);
+      processMock.expects('exit').withArgs(0).never();
+
+      mute();
+      atCmd.call(context, event, { ttl: 10, callback: function() {
+        ggCmd.call(context, event, { ttl: 10, callback: function() {
+          onEvent = onCmd.call(context, event);
+          setTimeout(function() {
+            unmute();
+            done();
+          }, 1100);
+        }});
+      }});
+    });
   });
 
 });

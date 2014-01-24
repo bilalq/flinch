@@ -1,6 +1,6 @@
 {
   "name": "flinch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Multitask with cat-like reflexes",
   "scripts": {
     "test": "mocha"
