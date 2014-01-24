@@ -85,7 +85,7 @@ status. That's all there is to it.
 
 License
 -------
-[MIT][3]
+[MIT][7]
 
   [1]: https://travis-ci.org/bilalq/flinch.png?branch=master
   [2]: https://travis-ci.org/bilalq/flinch
