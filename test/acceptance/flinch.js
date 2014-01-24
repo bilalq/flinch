@@ -158,9 +158,4 @@ describe('Acceptance spec', function() {
 
   });
 
-  describe('when multiple announcements are made on the same event', function() {
-    it('keeps only the latest announcement', function(done) {
-    });
-  });
-
 });
