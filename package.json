@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "description": "Multitask with cat-like reflexes",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "travis-test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && ((cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js) || exit 0)"
   },
   "repository": {
     "type": "git",
