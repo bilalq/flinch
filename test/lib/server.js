@@ -16,6 +16,39 @@ describe('Server', function() {
     done();
   });
 
+  describe('expireEvent function', function() {
+    var clock, serverSpy;
+
+    beforeEach(function(done) {
+      clock = sinon.useFakeTimers();
+      serverSpy = sinon.spy(server, 'rejectEvent');
+      done();
+    });
+
+    afterEach(function(done) {
+      server.rejectEvent.restore();
+      clock.restore();
+      done();
+    });
+
+    it('calls rejectEvent after the ttl expires', function(done) {
+      server.expireEvent({event: 'event', ttl: 40000});
+      clock.tick(20000);
+      serverSpy.should.not.have.been.called;
+      clock.tick(30000);
+      serverSpy.should.have.been.calledWith('event');
+      done();
+    });
+
+    it('never calls rejectEvent when the ttl is 0', function(done) {
+      server.expireEvent({event: 'event', ttl: 0});
+      serverSpy.should.not.have.been.called;
+      clock.tick(900000);
+      serverSpy.should.not.have.been.called;
+      done();
+    });
+  });
+
   describe('requestHandler', function() {
     var reqStub, resSpy, headers, body, stub_request_body;
 
