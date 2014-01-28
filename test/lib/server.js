@@ -1,5 +1,6 @@
 var http = require('http')
   , server = require('../../lib/server')
+  , events = require('../../lib/events')
   , clc = require('../../lib/color_logger');
 
 describe('Server', function() {
@@ -14,39 +15,6 @@ describe('Server', function() {
   afterEach(function(done) {
     http.createServer.restore();
     done();
-  });
-
-  describe('expireEvent function', function() {
-    var clock, serverSpy;
-
-    beforeEach(function(done) {
-      clock = sinon.useFakeTimers();
-      serverSpy = sinon.spy(server, 'rejectEvent');
-      done();
-    });
-
-    afterEach(function(done) {
-      server.rejectEvent.restore();
-      clock.restore();
-      done();
-    });
-
-    it('calls rejectEvent after the ttl expires', function(done) {
-      server.expireEvent({event: 'event', ttl: 40000});
-      clock.tick(20000);
-      serverSpy.should.not.have.been.called;
-      clock.tick(30000);
-      serverSpy.should.have.been.calledWith('event');
-      done();
-    });
-
-    it('never calls rejectEvent when the ttl is 0', function(done) {
-      server.expireEvent({event: 'event', ttl: 0});
-      serverSpy.should.not.have.been.called;
-      clock.tick(900000);
-      serverSpy.should.not.have.been.called;
-      done();
-    });
   });
 
   describe('requestHandler', function() {
@@ -76,17 +44,17 @@ describe('Server', function() {
     });
 
     describe('POST request for announcing flinch event', function() {
-      var addEventMock, clcMock;
+      var eventsMock, clcMock;
 
       beforeEach(function(done) {
         reqStub.method = 'POST';
-        addEventMock = sinon.mock(server);
+        eventsMock = sinon.mock(events);
         clcMock = sinon.mock(clc);
         done();
       });
 
       afterEach(function(done) {
-        addEventMock.verify();
+        eventsMock.verify();
         clcMock.verify();
         done();
       });
@@ -94,7 +62,7 @@ describe('Server', function() {
       it('adds event to internal list and prints success message on flinch at', function(done) {
         body.statusCode = 0;
         stub_request_body();
-        addEventMock.expects('addEvent').withArgs(body).once();
+        eventsMock.expects('add').withArgs(body).once();
         clcMock.expects('success').once();
 
         server.requestHandler(reqStub, resSpy);
@@ -107,7 +75,7 @@ describe('Server', function() {
       it('adds event to internal list and prints fail message on flinch gg', function(done) {
         body.statusCode = 1;
         stub_request_body();
-        addEventMock.expects('addEvent').withArgs(body).once();
+        eventsMock.expects('add').withArgs(body).once();
         clcMock.expects('fail').once();
 
         server.requestHandler(reqStub, resSpy);
@@ -119,16 +87,18 @@ describe('Server', function() {
     });
 
     it('clears events on a DELETE request', function(done) {
-      var clearEventsMock = sinon.mock(server);
-      clearEventsMock.expects('clearEvents').once();
+      var eventsMock = sinon.mock(events);
+      eventsMock.expects('clear').once();
 
       reqStub.method = 'DELETE';
       stub_request_body();
+      mute();
       server.requestHandler(reqStub, resSpy);
+      unmute();
 
       resSpy.writeHead.should.have.been.calledWith(204);
       resSpy.end.should.have.been.called;
-      clearEventsMock.verify();
+      eventsMock.verify();
       done();
     });
   });

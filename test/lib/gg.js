@@ -2,7 +2,7 @@ var request = require('request')
   , ggCmd = require('../../lib/gg');
 
 describe('GG', function() {
-  it('posts to server', function(done) {
+  it('makes POST request to the server', function(done) {
     var requestMock = sinon.mock(request)
       , event = 'someEvent'
       , port = 3030;

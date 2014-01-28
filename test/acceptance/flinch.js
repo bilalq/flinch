@@ -2,7 +2,8 @@ var onCmd = require('../../lib/on')
   , atCmd = require('../../lib/at')
   , ggCmd = require('../../lib/gg')
   , flushCmd = require('../../lib/flush')
-  , serverCmd = require('../../lib/server');
+  , serverCmd = require('../../lib/server')
+  , events = require('../../lib/events');
 
 describe('Acceptance spec', function() {
   var port, event, ttlOption, context, flinchServer;
