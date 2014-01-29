@@ -1,6 +1,6 @@
 {
   "name": "flinch",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Multitask with cat-like reflexes",
   "scripts": {
     "test": "mocha",
@@ -11,13 +11,15 @@
     "url": "git://github.com/bilalq/flinch.git"
   },
   "keywords": [
+    "flinch",
     "task",
+    "multitask",
+    "workflow",
     "schedule",
     "event",
-    "flinch",
     "executable",
     "blocking",
-    "signalling"
+    "signals"
   ],
   "author": "Bilal Quadri",
   "license": "MIT",
@@ -26,7 +28,6 @@
   },
   "homepage": "https://github.com/bilalq/flinch",
   "directories": {
-    "man": "./man",
     "lib": "./lib",
     "bin": "./bin"
   },
