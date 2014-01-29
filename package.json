@@ -2,13 +2,13 @@
   "name": "flinch",
   "version": "0.1.0",
   "description": "Multitask with cat-like reflexes",
+  "author": "Bilal Quadri",
+  "license": "MIT",
+  "preferGlobal": true,
   "scripts": {
     "test": "mocha",
+    "cover": "istanbul cover _mocha -- -u exports -R spec",
     "travis-test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && ((cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js) || exit 0)"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/bilalq/flinch.git"
   },
   "keywords": [
     "flinch",
@@ -21,8 +21,10 @@
     "blocking",
     "signals"
   ],
-  "author": "Bilal Quadri",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bilalq/flinch.git"
+  },
   "bugs": {
     "url": "https://github.com/bilalq/flinch/issues"
   },
@@ -41,6 +43,6 @@
     "mocha": "1.17.x",
     "sinon": "1.7.x",
     "chai": "1.8.x",
-    "sinon-chai": "2.4.x"
+    "sinon-chai": "2.5.x"
   }
 }
