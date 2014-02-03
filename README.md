@@ -42,7 +42,7 @@ Usage: flinch [options] [command]
 
 Commands:
 
-  server                 start a flinch server
+  server [options]       start a flinch server
   s                      alias for server command
   on <event>             block on the specified event
   at [options] <event>   announce that the specified event has occurred
@@ -56,11 +56,11 @@ Options:
   -V, --version      output the version number
   -p, --port [port]  specify which port to use [Default: 3030]
 
-Option for server command:
+Options for server command:
 
   -g, --growl      enable growl notifications
 
-Option for gg and at commands:
+Options for gg and at commands:
 
   -t, --ttl [ttl]  set time to live for event success announcement in minutes
 ```
