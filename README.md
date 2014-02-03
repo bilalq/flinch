@@ -56,6 +56,10 @@ Options:
   -V, --version      output the version number
   -p, --port [port]  specify which port to use [Default: 3030]
 
+Option for server command:
+
+  -g, --growl      enable growl notifications
+
 Option for gg and at commands:
 
   -t, --ttl [ttl]  set time to live for event success announcement in minutes
