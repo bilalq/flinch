@@ -1,5 +1,5 @@
 var request = require('request')
-  , ggCmd = require('../../lib/gg');
+  , ggCmd = require('../../lib/commands/gg');
 
 describe('GG', function() {
   it('makes POST request to the server', function(done) {

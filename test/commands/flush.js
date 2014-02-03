@@ -1,5 +1,5 @@
 var request = require('request')
-  , flushCmd = require('../../lib/flush');
+  , flushCmd = require('../../lib/commands/flush');
 
 describe('Flush', function() {
   it('sends delete request to server', function(done) {

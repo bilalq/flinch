@@ -1,5 +1,5 @@
 var request = require('request')
-  , onCmd = require('../../lib/on');
+  , onCmd = require('../../lib/commands/on');
 
 describe('On', function() {
   it('blocks until flinched', function(done) {

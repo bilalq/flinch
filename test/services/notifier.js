@@ -1,6 +1,6 @@
-var clc = require('../../lib/color_logger');
+var notify = require('../../lib/services/notifier');
 
-describe('Color Logger', function() {
+describe('Notifier', function() {
 
   describe('success function', function() {
     it('writes to the console in green text', function(done) {
@@ -8,7 +8,7 @@ describe('Color Logger', function() {
 
       consoleMock = sinon.mock(console);
       consoleMock.expects('log').once();
-      msg = clc.success('test');
+      msg = notify.success('test');
 
       consoleMock.verify();
       msg.startsWith("\u001b[32m").should.be.true;
@@ -23,7 +23,7 @@ describe('Color Logger', function() {
 
       consoleMock = sinon.mock(console);
       consoleMock.expects('log').once();
-      msg = clc.fail('test');
+      msg = notify.fail('test');
       consoleMock.verify();
       msg.startsWith("\u001b[31m").should.be.true;
       msg.endsWith("\u001b[39m").should.be.true;

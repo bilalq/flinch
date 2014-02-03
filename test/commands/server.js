@@ -1,7 +1,7 @@
 var http = require('http')
-  , server = require('../../lib/server')
-  , events = require('../../lib/events')
-  , clc = require('../../lib/color_logger');
+  , server = require('../../lib/commands/server')
+  , events = require('../../lib/services/event_manager')
+  , notify = require('../../lib/services/notifier');
 
 describe('Server', function() {
   var listenSpy;
@@ -44,18 +44,18 @@ describe('Server', function() {
     });
 
     describe('POST request for announcing flinch event', function() {
-      var eventsMock, clcMock;
+      var eventsMock, notifyMock;
 
       beforeEach(function(done) {
         reqStub.method = 'POST';
         eventsMock = sinon.mock(events);
-        clcMock = sinon.mock(clc);
+        notifyMock = sinon.mock(notify);
         done();
       });
 
       afterEach(function(done) {
         eventsMock.verify();
-        clcMock.verify();
+        notifyMock.verify();
         done();
       });
 
@@ -63,7 +63,7 @@ describe('Server', function() {
         body.statusCode = 0;
         stub_request_body();
         eventsMock.expects('add').withArgs(body).once();
-        clcMock.expects('success').once();
+        notifyMock.expects('success').once();
 
         server.requestHandler(reqStub, resSpy);
 
@@ -76,7 +76,7 @@ describe('Server', function() {
         body.statusCode = 1;
         stub_request_body();
         eventsMock.expects('add').withArgs(body).once();
-        clcMock.expects('fail').once();
+        notifyMock.expects('fail').once();
 
         server.requestHandler(reqStub, resSpy);
 
