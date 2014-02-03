@@ -37,12 +37,13 @@
     "commander": "2.1.x",
     "request": "2.33.x",
     "cli-color": "0.2.x",
-    "underscore": "1.5.x"
+    "underscore": "1.5.x",
+    "growl": "1.7.x"
   },
   "devDependencies": {
     "mocha": "1.17.x",
-    "sinon": "1.7.x",
-    "chai": "1.8.x",
+    "sinon": "1.8.x",
+    "chai": "1.9.x",
     "sinon-chai": "2.5.x"
   }
 }
