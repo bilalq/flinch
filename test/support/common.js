@@ -8,18 +8,35 @@ global.sinonChai = require('sinon-chai');
 global._ = require('underscore');
 chai.use(sinonChai);
 
+// Styled string matchers
+global.styleMatch = {
+  startsAndEndsWith: function(str, start, end) {
+   return str.startsWith(start) && str.endsWith(end);
+  }
+, green: function(str) {
+     return styleMatch.startsAndEndsWith(str, '\u001b[32', '\u001b[39m');
+  }
+, red: function(str) {
+     return styleMatch.startsAndEndsWith(str, '\u001b[31', '\u001b[39m');
+  }
+, bold: function(str) {
+     return styleMatch.startsAndEndsWith(str, '\u001b[1', '\u001b[22m');
+  }
+};
+
 // Easy muting/unmuting of console.log
 var muted = false;
+var console_logger = console.log;
 global.mute = function() {
   if (!muted) {
-    sinon.stub(console, 'log');
+    console.log = function() {};
     muted = true;
   }
 };
 global.unmute = function() {
-  if (console.log.restore) {
+  if (muted) {
     muted = false;
-    console.log.restore();
+    console.log = console_logger;
   }
 };
 

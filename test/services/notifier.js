@@ -1,33 +1,64 @@
 var notify = require('../../lib/services/notifier');
+var clc = require('cli-color');
 
 describe('Notifier', function() {
+  var consoleStub, msg, growlStub;
 
-  describe('success function', function() {
-    it('writes to the console in green text', function(done) {
-      var consoleMock, msg;
+  beforeEach(function(done) {
+    growlStub = sinon.stub(notify, 'growl');
+    done();
+  });
 
-      consoleMock = sinon.mock(console);
-      consoleMock.expects('log').once();
-      msg = notify.success('test');
+  afterEach(function(done) {
+    growlStub.restore();
+    done();
+  });
 
-      consoleMock.verify();
-      msg.startsWith("\u001b[32m").should.be.true;
-      msg.endsWith("\u001b[39m").should.be.true;
+  describe('event', function() {
+    it('logs a green message on flinch at', function(done) {
+      consoleStub = sinon.stub(console, 'log');
+      notify.event({ ttl: 5, statusCode: 0, event: 'e'});
+      consoleStub.should.have.been.calledWithMatch(sinon.match(styleMatch.green));
+      consoleStub.restore();
+      done();
+    });
+
+    it('logs a red message on flinch at', function(done) {
+      consoleStub = sinon.stub(console, 'log');
+      notify.event({ ttl: 5, statusCode: 1, event: 'e'});
+      consoleStub.should.have.been.calledWithMatch(sinon.match(styleMatch.red));
+      consoleStub.restore();
       done();
     });
   });
 
-  describe('fail function', function() {
-    it('writes to the console in red text', function(done) {
-      var consoleMock, msg;
-
-      consoleMock = sinon.mock(console);
-      consoleMock.expects('log').once();
-      msg = notify.fail('test');
-      consoleMock.verify();
-      msg.startsWith("\u001b[31m").should.be.true;
-      msg.endsWith("\u001b[39m").should.be.true;
+  describe('flush', function() {
+    it('logs a bold message on flinch flush', function(done) {
+      consoleStub = sinon.stub(console, 'log');
+      notify.flush();
+      consoleStub.should.have.been.calledWithMatch(sinon.match(styleMatch.bold));
+      consoleStub.restore();
       done();
     });
   });
+
+  describe('growl support', function() {
+    it('is disabled by default', function(done) {
+      mute();
+      notify.flush();
+      growlStub.should.not.have.been.called;
+      unmute();
+      done();
+    });
+
+    it('can be enabled via set_growl_support', function(done) {
+      mute();
+      notify.set_growl_support(true);
+      notify.flush();
+      growlStub.should.have.been.called;
+      unmute();
+      done();
+    });
+  });
+
 });

@@ -59,26 +59,30 @@ describe('Server', function() {
         done();
       });
 
-      it('adds event to internal list and prints success message on flinch at', function(done) {
+      it('adds event to internal list and notifies on flinch at', function(done) {
         body.statusCode = 0;
         stub_request_body();
         eventsMock.expects('add').withArgs(body).once();
-        notifyMock.expects('success').once();
+        notifyMock.expects('event').withArgs(body).once();
 
+        mute();
         server.requestHandler(reqStub, resSpy);
+        unmute();
 
         resSpy.writeHead.should.have.been.calledWith(200, headers);
         resSpy.end.should.have.been.called;
         done();
       });
 
-      it('adds event to internal list and prints fail message on flinch gg', function(done) {
+      it('adds event to internal list and notifies on flinch gg', function(done) {
         body.statusCode = 1;
         stub_request_body();
         eventsMock.expects('add').withArgs(body).once();
-        notifyMock.expects('fail').once();
+        notifyMock.expects('event').withArgs(body).once();
 
+        mute();
         server.requestHandler(reqStub, resSpy);
+        unmute();
 
         resSpy.writeHead.should.have.been.calledWith(200, headers);
         resSpy.end.should.have.been.called;
@@ -88,7 +92,9 @@ describe('Server', function() {
 
     it('clears events on a DELETE request', function(done) {
       var eventsMock = sinon.mock(events);
+      var notifyMock = sinon.mock(notify);
       eventsMock.expects('clear').once();
+      notifyMock.expects('flush').once();
 
       reqStub.method = 'DELETE';
       stub_request_body();
@@ -99,6 +105,7 @@ describe('Server', function() {
       resSpy.writeHead.should.have.been.calledWith(204);
       resSpy.end.should.have.been.called;
       eventsMock.verify();
+      notifyMock.verify();
       done();
     });
   });
