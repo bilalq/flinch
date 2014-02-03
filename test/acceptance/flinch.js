@@ -172,6 +172,7 @@ describe('Acceptance spec', function() {
     });
 
     it('keeps only the latest announcement when at is called last', function(done) {
+      this.timeout(4000);
       processMock.expects('exit').withArgs(0).atLeast(1);
       processMock.expects('exit').withArgs(1).never();
 
@@ -188,6 +189,7 @@ describe('Acceptance spec', function() {
     });
 
     it('keeps only the latest announcement when gg is called last', function(done) {
+      this.timeout(4000);
       processMock.expects('exit').withArgs(1).atLeast(1);
       processMock.expects('exit').withArgs(0).never();
 
