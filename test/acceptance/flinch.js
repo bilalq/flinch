@@ -59,6 +59,7 @@ describe('Acceptance spec', function() {
 
   describe('flinch at', function() {
     it('makes a POST request to the server and gets a status code of 0', function(done) {
+      this.timeout(4000);
       mute();
       atCmd.call(context, event, {
         ttl: 10
@@ -76,6 +77,7 @@ describe('Acceptance spec', function() {
 
   describe('flinch gg', function() {
     it('makes a POST request to the server and gets a status code of 1', function(done) {
+      this.timeout(4000);
       mute();
       ggCmd.call(context, event, {callback: function(err, res, body) {
         res.statusCode.should.equal(200);
