@@ -108,14 +108,34 @@ describe('Server', function() {
       notifyMock.verify();
       done();
     });
+
+    it('responds with 400 on a PUT request', function(done) {
+      reqStub.method = 'PUT';
+      stub_request_body();
+      mute();
+      server.requestHandler(reqStub, resSpy);
+      unmute();
+
+      resSpy.writeHead.should.have.been.calledWith(400);
+      resSpy.end.should.have.been.called;
+      done();
+    });
   });
 
   describe('start', function() {
     it('listens on the port value of the caller', function(done) {
       mute();
-      server.start.call({port: 5000});
+      server.start.call({ port: 5000 });
       listenSpy.should.have.been.calledWith(5000);
       unmute();
+      done();
+    });
+
+    it('enables growl notifications if options say to', function(done) {
+      var notifyMock = sinon.mock(notify);
+      notifyMock.expects('set_growl_support').withArgs(true).once();
+      server.start.call({ port: 5000 }, { growl: true });
+      notifyMock.verify();
       done();
     });
   });
