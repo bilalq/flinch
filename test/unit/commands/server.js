@@ -1,7 +1,7 @@
 var http = require('http')
-  , server = require('../../lib/commands/server')
-  , events = require('../../lib/services/event_manager')
-  , notify = require('../../lib/services/notifier');
+  , server = require('../../../lib/commands/server')
+  , events = require('../../../lib/services/event_manager')
+  , notify = require('../../../lib/services/notifier');
 
 describe('Server', function() {
   var listenSpy;

@@ -1,4 +1,4 @@
-var convert = require('../../lib/services/converter');
+var convert = require('../../../lib/services/converter');
 
 describe('Converter', function() {
 

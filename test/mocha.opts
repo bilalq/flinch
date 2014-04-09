@@ -3,6 +3,6 @@
 --growl
 --debug
 --check-leaks
---require test/support/common
+--require test/setup
 --recursive
 --async-only

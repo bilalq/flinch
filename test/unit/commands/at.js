@@ -1,5 +1,5 @@
 var request = require('request')
-  , atCmd = require('../../lib/commands/at');
+  , atCmd = require('../../../lib/commands/at');
 
 describe('At', function() {
   it('posts to server', function(done) {

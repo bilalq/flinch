@@ -1,4 +1,4 @@
-var flinchCommander = require('../../lib/flinch');
+var flinchCommander = require('../../../lib/flinch');
 
 describe('Flinch commander', function() {
   var flinch;

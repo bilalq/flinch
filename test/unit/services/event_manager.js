@@ -1,4 +1,4 @@
-var events = require('../../lib/services/event_manager');
+var events = require('../../../lib/services/event_manager');
 
 describe('Events', function() {
 

@@ -1,4 +1,4 @@
-var notify = require('../../lib/services/notifier');
+var notify = require('../../../lib/services/notifier');
 var clc = require('cli-color');
 
 describe('Notifier', function() {

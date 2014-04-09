@@ -1,4 +1,4 @@
-var humanizer = require('../../lib/services/humanizer');
+var humanizer = require('../../../lib/services/humanizer');
 
 describe('Humanizer', function() {
   describe('date function', function() {
