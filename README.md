@@ -91,12 +91,12 @@ License
 -------
 [MIT][9]
 
-  [1]: https://travis-ci.org/bilalq/flinch.png?branch=master
+  [1]: https://travis-ci.org/bilalq/flinch.svg?branch=master
   [2]: https://travis-ci.org/bilalq/flinch
   [3]: https://coveralls.io/repos/bilalq/flinch/badge.png?branch=master
   [4]: https://coveralls.io/r/bilalq/flinch?branch=master
-  [5]: https://gemnasium.com/bilalq/flinch.png
+  [5]: https://gemnasium.com/bilalq/flinch.svg
   [6]: https://gemnasium.com/bilalq/flinch
-  [7]: https://badge.fury.io/js/flinch.png
+  [7]: https://badge.fury.io/js/flinch.svg
   [8]: https://npmjs.org/package/flinch
   [9]: https://github.com/bilalq/flinch/blob/master/LICENSE
