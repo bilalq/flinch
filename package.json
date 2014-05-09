@@ -38,16 +38,12 @@
     "request": "^2.34.0",
     "cli-color": "^0.3.2",
     "underscore": "^1.6.0",
-    "growl": "^1.7.0",
-    "sinon-chai": "^2.5.0",
-    "chai": "^1.9.1",
-    "sinon": "^1.9.1",
-    "mocha": "^1.18.2"
+    "growl": "^1.7.0"
   },
   "devDependencies": {
-    "mocha": "1.18.x",
-    "sinon": "1.9.x",
-    "chai": "1.9.x",
-    "sinon-chai": "2.5.x"
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1",
+    "sinon": "^1.9.1",
+    "sinon-chai": "^2.5.0"
   }
 }
