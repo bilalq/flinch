@@ -34,11 +34,15 @@
     "bin": "./bin"
   },
   "dependencies": {
-    "commander": "2.2.x",
-    "request": "2.34.x",
-    "cli-color": "0.2.x",
-    "underscore": "1.6.x",
-    "growl": "1.7.x"
+    "commander": "^2.2.0",
+    "request": "^2.34.0",
+    "cli-color": "^0.3.2",
+    "underscore": "^1.6.0",
+    "growl": "^1.7.0",
+    "sinon-chai": "^2.5.0",
+    "chai": "^1.9.1",
+    "sinon": "^1.9.1",
+    "mocha": "^1.18.2"
   },
   "devDependencies": {
     "mocha": "1.18.x",
