@@ -3,5 +3,6 @@ node_js:
   - "0.11"
   - "0.10"
   - "0.8"
-before_script: npm install -g npm && npm install istanbul coveralls
+before_install: npm update -g npm
+before_script: npm install istanbul coveralls
 script: npm run travis-test
