@@ -12,6 +12,26 @@
   "expr": true,           // Allow standalone expressions
 
   // Environment Options
-  "node": true            // Allow browser globals to be used
+  "node": true,           // Allow browser globals to be used
+
+  // Globals
+  "globals": {
+    "styleMatch": false,
+    "sinon": false,
+    "chai": false,
+    "sinonChai": false,
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false,
+    "should": false,
+    "expect": false,
+    "_": false,
+    "mute": false,
+    "unmute": false,
+    "run_cmd": false
+  }
 }
 // vim: filetype=javascript
