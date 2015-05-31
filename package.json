@@ -41,9 +41,9 @@
     "growl": "^1.8.1"
   },
   "devDependencies": {
-    "mocha": "^1.20.1",
-    "chai": "^1.9.1",
-    "sinon": "^1.10.2",
-    "sinon-chai": "^2.5.0"
+    "mocha": "^2.2.5",
+    "chai": "^2.3.0",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0"
   }
 }
