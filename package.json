@@ -1,6 +1,6 @@
 {
   "name": "flinch",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Multitask with cat-like reflexes",
   "author": "Bilal Quadri",
   "license": "MIT",
@@ -34,11 +34,11 @@
     "bin": "./bin"
   },
   "dependencies": {
-    "commander": "^2.2.0",
-    "request": "^2.34.0",
-    "cli-color": "^0.3.2",
-    "underscore": "^1.6.0",
-    "growl": "^1.7.0"
+    "commander": "^2.8.1",
+    "request": "^2.57.0",
+    "cli-color": "^1.0.0",
+    "underscore": "^1.8.3",
+    "growl": "^1.8.1"
   },
   "devDependencies": {
     "mocha": "^1.20.1",
