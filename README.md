@@ -3,10 +3,7 @@ flinch
 
 Multitask with cat-like reflexes
 
-[![Build Status][TravisBadge]][Travis]
-[![Coverage Status][CoverallsBadge]][Coveralls]
-[![Dependency Status][GemnasiumBadge]][Gemnasium]
-[![NPM version][VersionBadge]][Version]
+[![Build Status][1]][2] [![Coverage Status][3]][4] [![Dependency Status][5]][6] [![NPM version][7]][8]
 
 Installation
 ------------
@@ -92,14 +89,14 @@ status. That's all there is to it.
 
 License
 -------
-[MIT][License]
+[MIT][9]
 
-  [TravisBadge]: https://travis-ci.org/bilalq/flinch.svg?branch=master
-  [Travis]: https://travis-ci.org/bilalq/flinch
-  [CoverallsBadge]: http://img.shields.io/coveralls/bilalq/flinch.svg
-  [Coveralls]: https://coveralls.io/r/bilalq/flinch?branch=master
-  [GemnasiumBadge]: https://gemnasium.com/bilalq/flinch.svg
-  [Gemnasium]: https://gemnasium.com/bilalq/flinch
-  [VersionBadge]: https://badge.fury.io/js/flinch.svg
-  [Version]: https://npmjs.org/package/flinch
-  [License]: https://github.com/bilalq/flinch/blob/master/LICENSE
+  [1]: https://travis-ci.org/bilalq/flinch.svg?branch=master
+  [2]: https://travis-ci.org/bilalq/flinch
+  [3]: https://coveralls.io/repos/bilalq/flinch/badge.png?branch=master
+  [4]: https://coveralls.io/r/bilalq/flinch?branch=master
+  [5]: https://gemnasium.com/bilalq/flinch.svg
+  [6]: https://gemnasium.com/bilalq/flinch
+  [7]: https://badge.fury.io/js/flinch.svg
+  [8]: https://npmjs.org/package/flinch
+  [9]: https://github.com/bilalq/flinch/blob/master/LICENSE

@@ -1,17 +1,8 @@
 {
-  // Enforcing Options
-  "undef": true,          // Prohibit undefined variables
-  "eqeqeq": true,         // Require the use of three-equals
-  "bitwise": true,        // Prohibit bitwise operators
-  "trailing": true,       // Prohibit trailing whitespace
-
-  // Relaxing Options
-  "laxcomma": true,       // Allow comma-first style
-  "asi": true,            // Allow semi-colon free style
-  "eqnull": true,         // Allow use of two-equals for comparison with null
-  "expr": true,           // Allow standalone expressions
-
-  // Environment Options
-  "node": true            // Allow browser globals to be used
+  "maxerr"    : 10,       // Only report first 10 errors
+  "laxcomma"  : true,     // Allow comma-first style
+  "bitwise"   : true,     // Don't allow bitwise operators
+  "sub"       : true,     // Suppress warnings about using [] notation
+  "expr"      : true      // Be quiet about ternaries calling expressions
 }
 // vim: filetype=javascript
